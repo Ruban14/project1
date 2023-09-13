@@ -13,7 +13,24 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      AZURE_CLIENT_ID: 42563449-c9f5-44d9-b280-279bccdbfb64
+      AZURE_CLIENT_SECRET: tL68Q~LjNlYV_p2FnMSBK0xxlzJTbE3201I~7cbs
+      AZURE_TENANT_ID: ce6d1ef4-a8d0-42a6-8b71-a3630c44e6db
+      AZURE_SUBSCRIPTION_ID: 809b4f5a-970c-49bd-b1d5-cec8c691c6f1
+
     steps:
+      - name: Echo Azure Credentials
+        run: |
+          echo "Azure Client ID: $AZURE_CLIENT_ID"
+          echo "Azure Client Secret: $AZURE_CLIENT_SECRET"
+          echo "Azure Tenant ID: $AZURE_TENANT_ID"
+          echo "Azure Subscription ID: $AZURE_SUBSCRIPTION_ID"
+
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -31,20 +48,11 @@ jobs:
         run: |
           python manage.py test
 
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-      - name: Debug Azure Credentials
-        run: |
-          echo "${{ secrets.AZURE_CREDENTIALS }}"
-
       - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        run: |
+          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+          az account set --subscription $AZURE_SUBSCRIPTION_ID
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: your-web-app-name  # Replace with your Azure Web App name
+        run: |
+          # Your deployment commands here

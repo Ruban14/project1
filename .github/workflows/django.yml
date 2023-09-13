@@ -18,6 +18,8 @@ jobs:
       AZURE_CLIENT_SECRET: tL68Q~LjNlYV_p2FnMSBK0xxlzJTbE3201I~7cbs
       AZURE_TENANT_ID: ce6d1ef4-a8d0-42a6-8b71-a3630c44e6db
       AZURE_SUBSCRIPTION_ID: 809b4f5a-970c-49bd-b1d5-cec8c691c6f1
+      AZURE_RESOURCE_GROUP_NAME: qwerty123452
+      AZURE_FUNCTION_NAME: qwerty123452
 
     steps:
       - name: Echo Azure Credentials
@@ -53,6 +55,14 @@ jobs:
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID --allow-no-subscriptions
           # az account set --subscription $AZURE_SUBSCRIPTION_ID
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Function App
         run: |
-          # Your deployment commands here
+          # Build and package your Django application for deployment
+          python manage.py collectstatic --noinput
+          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src ./ --build-remote /project1.zip
+      
+          # Deploy the packaged application to Azure Function App
+          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip
+      
+          # Restart the Azure Function App to apply changes
+          az functionapp restart --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME

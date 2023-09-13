@@ -31,6 +31,14 @@ jobs:
         run: |
           python manage.py test
 
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+      - name: Debug Azure Credentials
+        run: |
+          echo "${{ secrets.AZURE_CREDENTIALS }}"
+
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -40,4 +48,3 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: your-web-app-name  # Replace with your Azure Web App name
-          package: .

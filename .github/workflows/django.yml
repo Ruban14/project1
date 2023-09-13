@@ -59,7 +59,7 @@ jobs:
         run: |
           # Build and package your Django application for deployment
           python manage.py collectstatic --noinput
-          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src ./ --build-remote /project1.zip
+          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip --build-remote true
       
           # Deploy the packaged application to Azure Function App
           az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip

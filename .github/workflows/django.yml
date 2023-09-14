@@ -50,6 +50,11 @@ jobs:
         run: |
           python manage.py test
 
+      
+      - name: Display Secret Values
+        run: |
+          echo "AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}"
+
       - name: Set up Azure CLI
         uses: azure/login@v1
         with:

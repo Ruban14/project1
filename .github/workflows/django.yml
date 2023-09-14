@@ -56,5 +56,5 @@ jobs:
       - name: Deploy to Azure Function App
         run: |
           # Build and package your Django application for deployment
-          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src ../project1.zip --build-remote true
+          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src ./project1.zip --build-remote true
           az functionapp restart --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME

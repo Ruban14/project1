@@ -49,13 +49,7 @@ jobs:
       - name: Run Tests
         run: |
           python manage.py test
-
-      - name: Set up Azure CLI
-        env:
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-        run: |
-          az login --service-principal -u $(echo $AZURE_CREDENTIALS | jq -r .clientId) -p $(echo $AZURE_CREDENTIALS | jq -r .clientSecret) -t $(echo $AZURE_CREDENTIALS | jq -r .tenantId)
-
+        
       - name: Azure Login
         run: |
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID

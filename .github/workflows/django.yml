@@ -53,9 +53,9 @@ jobs:
       - name: 'Azure CLI login'
         uses: azure/login@v1
         with:
-            client-id: $AZURE_CLIENT_ID
-            tenant-id: $AZURE_TENANT_ID
-            subscription-id: $AZURE_SUBSCRIPTION_ID
+            client-id: 42563449-c9f5-44d9-b280-279bccdbfb64
+            tenant-id: ce6d1ef4-a8d0-42a6-8b71-a3630c44e6db
+            subscription-id: 809b4f5a-970c-49bd-b1d5-cec8c691c6f1
   
 
       # - name: Azure Login

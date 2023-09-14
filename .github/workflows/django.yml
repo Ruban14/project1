@@ -53,15 +53,7 @@ jobs:
       - name: Azure Login
         run: |
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID --allow-no-subscriptions
-          # az account set --subscription $AZURE_SUBSCRIPTION_ID
-
       - name: Deploy to Azure Function App
         run: |
           # Build and package your Django application for deployment
           az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip --build-remote true
-      
-          # Deploy the packaged application to Azure Function App
-          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip
-      
-          # Restart the Azure Function App to apply changes
-          az functionapp restart --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME

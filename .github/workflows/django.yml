@@ -53,9 +53,7 @@ jobs:
       - name: Set up Azure CLI
         uses: azure/login@v1
         with:
-          creds: $AZURE_CLIENT_ID
-          secret: $AZURE_CLIENT_SECRET
-          tenant: $AZURE_TENANT_ID
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
   
 
       # - name: Azure Login

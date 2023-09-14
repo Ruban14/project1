@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AZURE_CLIENT_ID: 42563449-c9f5-44d9-b280-279bccdbfb64
-      AZURE_CLIENT_SECRET: tL68Q~LjNlYV_p2FnMSBK0xxlzJTbE3201I~7cbs
+      AZURE_CLIENT_ID: 33774af1-2503-468a-ae2b-7337fa4e02ad
+      AZURE_CLIENT_SECRET: sCh8Q~NAzFGYgoRZ3I5Qpe8w1mWlwJpzWRt3mace
       AZURE_TENANT_ID: ce6d1ef4-a8d0-42a6-8b71-a3630c44e6db
       AZURE_SUBSCRIPTION_ID: 809b4f5a-970c-49bd-b1d5-cec8c691c6f1
       AZURE_RESOURCE_GROUP_NAME: qwerty123452
@@ -55,12 +55,11 @@ jobs:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
         run: |
           az login --service-principal -u $(echo $AZURE_CREDENTIALS | jq -r .clientId) -p $(echo $AZURE_CREDENTIALS | jq -r .clientSecret) -t $(echo $AZURE_CREDENTIALS | jq -r .tenantId)
-  
 
-      # - name: Azure Login
-      #   run: |
-      #     az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID --allow-no-subscriptions
-      # - name: Deploy to Azure Function App
-      #   run: |
-      #     # Build and package your Django application for deployment
-      #     az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip --build-remote true
+      - name: Azure Login
+        run: |
+          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+      - name: Deploy to Azure Function App
+        run: |
+          # Build and package your Django application for deployment
+          az functionapp deployment source config-zip --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME --src /project1.zip --build-remote true

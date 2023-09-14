@@ -50,15 +50,12 @@ jobs:
         run: |
           python manage.py test
 
-      
-      - name: Display Secret Values
-        run: |
-          echo "AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}"
-
-      - name: Set up Azure CLI
+      - name: 'Azure CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+            client-id: $AZURE_CLIENT_ID
+            tenant-id: $AZURE_TENANT_ID
+            subscription-id: $AZURE_SUBSCRIPTION_ID
   
 
       # - name: Azure Login

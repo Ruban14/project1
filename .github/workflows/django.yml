@@ -19,7 +19,7 @@ jobs:
       AZURE_TENANT_ID: ce6d1ef4-a8d0-42a6-8b71-a3630c44e6db
       AZURE_SUBSCRIPTION_ID: 809b4f5a-970c-49bd-b1d5-cec8c691c6f1
       AZURE_RESOURCE_GROUP_NAME: qwerty123452
-      AZURE_FUNCTION_NAME: qwerty123452
+      AZURE_FUNCTION_NAME: qwerty12345
 
     steps:
       - name: Echo Azure Credentials

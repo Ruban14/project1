@@ -52,7 +52,7 @@ jobs:
         
       - name: Azure Login
         run: |
-          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID --allow-no-subscriptions
       - name: Deploy to Azure Function App
         run: |
           # Build and package your Django application for deployment

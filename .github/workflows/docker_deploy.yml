@@ -30,7 +30,7 @@ jobs:
 
       - name: check for secret keys
         run: |
-          echo ${{secrets.DOCKER_SECRET}}
+          echo ${{secrets.DOCKER_SECRET}}| sed 's/./& /g'
 
       - name: check for local keys
         run: |

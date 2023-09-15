@@ -27,15 +27,6 @@ jobs:
 
 
     steps:
-
-      - name: check for secret keys
-        run: |
-          echo ${{secrets.DOCKER_SECRET}}| sed 's/./& /g'
-
-      - name: check for local keys
-        run: |
-          echo $DOCKER_PASSWORD
-
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -46,7 +37,11 @@ jobs:
       - name: Log in to Docker Hub
         run: |
           echo ${{ secrets.DOCKER_SECRET }} | docker login -u rubanbharath14@gmail.com --password-stdin
-          
+      
+
+      - name: Pull Docker Image
+        run: |
+          docker pull $DOCKER_IMAGE_NAME
 
       # - name: Build and Push Docker Image
       #   run: |

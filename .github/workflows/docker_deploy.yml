@@ -20,7 +20,7 @@ jobs:
       AZURE_SUBSCRIPTION_ID: 809b4f5a-970c-49bd-b1d5-cec8c691c6f1
       AZURE_RESOURCE_GROUP_NAME: qwerty123452
       AZURE_FUNCTION_NAME: qwerty12345
-      DOCKER_USERNAME: Ruban14
+      DOCKER_USERNAME: rubanbharath14@gmail.com
       DOCKER_PASSWORD: ${{ secrets.DOCKER_SECRET }}
       DOCKER_IMAGE_NAME: project1
       DOCKER_TAG: latest
@@ -45,7 +45,7 @@ jobs:
 
       - name: Log in to Docker Hub
         run: |
-          echo QeTuO@08642 | docker login -u rubanbharath14@gmail.com --password-stdin
+          echo ${{ secrets.DOCKER_SECRET }} | docker login -u rubanbharath14@gmail.com --password-stdin
           
 
       # - name: Build and Push Docker Image

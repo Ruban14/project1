@@ -45,7 +45,7 @@ jobs:
 
       - name: Log in to Docker Hub
         run: |
-          echo QeTuO@08642 | docker login -u $DOCKER_USERNAME --password-stdin
+          echo QeTuO@08642 | docker login -u rubanbharath14@gmail.com --password-stdin
           
 
       # - name: Build and Push Docker Image

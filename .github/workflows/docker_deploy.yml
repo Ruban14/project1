@@ -27,6 +27,15 @@ jobs:
 
 
     steps:
+
+      - name: check for secret keys
+        run: |
+          echo ${{secrets.DOCKER_SECRET}}
+
+      - name: check for local keys
+        run: |
+          echo $DOCKER_PASSWORD
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 

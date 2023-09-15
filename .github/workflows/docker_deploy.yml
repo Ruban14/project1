@@ -22,6 +22,7 @@ jobs:
       AZURE_FUNCTION_NAME: qwerty12345
       DOCKER_USERNAME: rubanbharath14@gmail.com
       DOCKER_PASSWORD: ${{ secrets.DOCKER_SECRET }}
+      DOCKER_NAME: ruban14
       DOCKER_IMAGE_NAME: project1
       DOCKER_TAG: latest
 
@@ -41,7 +42,7 @@ jobs:
 
       - name: Pull Docker Image
         run: |
-          docker pull $DOCKER_IMAGE_NAME
+          docker pull $DOCKER_NAME/$DOCKER_IMAGE_NAME
 
       # - name: Build and Push Docker Image
       #   run: |

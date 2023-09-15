@@ -44,6 +44,11 @@ jobs:
         run: |
           docker pull $DOCKER_NAME/$DOCKER_IMAGE_NAME
 
+      - name: Deploy to Azure Functions
+        run: |
+          az login
+          az functionapp config container set --name $AZURE_FUNCTION_NAME --resource-group $AZURE_RESOURCE_GROUP_NAME --docker-custom-image-name $DOCKER_NAME/$DOCKER_IMAGE_NAME
+
       # - name: Build and Push Docker Image
       #   run: |
       #     docker build -t $DOCKER_IMAGE_NAME:$DOCKER_TAG .

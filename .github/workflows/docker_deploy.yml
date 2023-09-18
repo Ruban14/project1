@@ -44,7 +44,6 @@ jobs:
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
           az functionapp config container set --name $AZURE_FUNCTION_NAME --resource-group $AZURE_RESOURCE_GROUP_NAME --docker-custom-image-name $DOCKER_NAME/$DOCKER_IMAGE_NAME
           
-      
       - name: Azure Restart
         run: |
           az functionapp restart --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_FUNCTION_NAME
